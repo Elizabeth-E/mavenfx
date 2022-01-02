@@ -1,4 +1,6 @@
 package nl.inholland.javafx.models;
 
-public enum Roles {
+public enum Role {
+    USER,
+    ADMIN
 }

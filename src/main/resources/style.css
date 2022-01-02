@@ -1,0 +1,10 @@
+.root{
+    -fx-font-size: 16pt;
+    -fx-font-family: "Courier New";
+    -fx-background: rgb(53, 204, 171);
+}
+
+.button{
+    -fx-background-color: rgb(2, 115, 176);
+    -fx-text-fill: white;
+}
