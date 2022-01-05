@@ -8,3 +8,24 @@
     -fx-background-color: rgb(2, 115, 176);
     -fx-text-fill: white;
 }
+
+.hbox{
+    -fx-background-color: #20097d;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+}
+.menu{
+    -fx-background-color: #ed05e2;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+}
+.form{
+    -fx-background-color: #05ede5;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+}
+.errorBox{
+    -fx-background-color: #ed3b05;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+}
