@@ -15,20 +15,23 @@ import nl.inholland.javafx.models.User;
 public class MainWindow extends Application {
     protected User user;
     protected String window;
-    protected VBox formBox;
+    protected VBox layout;
+    protected HBox formBox;
+    protected VBox menuBox;
+    protected HBox tableBox;
+    protected VBox errorBox;
 
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Fabulous Cinema -- Main");
-        stage.setWidth(300);
-        stage.setHeight(200);
+        stage.setWidth(800);
+        stage.setHeight(500);
         
-        VBox layout = new VBox();
-
-        VBox menuBox = new VBox();
-        HBox tableBox = new HBox();
-        formBox = new VBox();
-        VBox errorBox = new VBox();
+        layout = new VBox();
+        menuBox = new VBox();
+        tableBox = new HBox();
+        formBox = new HBox();
+        errorBox = new VBox();
 
         TableView<Screening> room1 = new TableView<>();
         TableView<Screening> room2 = new TableView<>();
@@ -71,10 +74,17 @@ public class MainWindow extends Application {
         TextField nameOnTicketDisplay = new TextField();
         nameOnTicketDisplay.setPromptText("name");
 
-        formBox.getChildren().addAll(room, startTime, endTime, movieTitle, seats, nameOnTicket);
-        formBox.getChildren().addAll(roomDisplay, startTimeDisplay, endTimeDisplay, movieTitleDisplay, seatsDisplay, nameOnTicketDisplay);
+        VBox formLabels1 = new VBox();
+        VBox formDisplays1 = new VBox();
+        VBox formLabels2 = new VBox();
+        VBox formDisplays2 = new VBox();
 
+        formLabels1.getChildren().addAll(room, startTime, endTime);
+        formDisplays1.getChildren().addAll(roomDisplay, startTimeDisplay, endTimeDisplay);
+        formLabels2.getChildren().addAll(movieTitle, seats, nameOnTicket);
+        formDisplays2.getChildren().addAll(movieTitleDisplay, seatsDisplay, nameOnTicketDisplay);
 
+        formBox.getChildren().addAll(formLabels1, formDisplays1, formLabels2, formDisplays2);
     }
 
 }
