@@ -7,6 +7,4 @@ import lombok.NonNull;
 public class Ticket {
     @NonNull
     private double price;
-    @NonNull
-    private Screening screening;
 }

@@ -2,24 +2,30 @@ package nl.inholland.javafx.views;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import nl.inholland.javafx.models.Screening;
+import nl.inholland.javafx.dal.Database;
+import nl.inholland.javafx.models.Movie;
 import nl.inholland.javafx.models.User;
 
 
 public class MainWindow extends Application {
+    private final Database database;
     protected User user;
     protected String window;
+    protected Scene scene;
     protected VBox layout;
     protected HBox formBox;
     protected VBox menuBox;
     protected HBox tableBox;
     protected VBox errorBox;
+    protected MenuBar menuBar;
+
+    public MainWindow(Database database) {
+        this.database = database;
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -28,13 +34,16 @@ public class MainWindow extends Application {
         stage.setHeight(500);
         
         layout = new VBox();
-        menuBox = new VBox();
+        constructMenu();
+        this.fillPurchaseForm();
+
+
         tableBox = new HBox();
-        formBox = new HBox();
+
         errorBox = new VBox();
 
-        TableView<Screening> room1 = new TableView<>();
-        TableView<Screening> room2 = new TableView<>();
+        TableView<Movie> room1 = new TableView<>();
+        TableView<Movie> room2 = new TableView<>();
         tableBox.getChildren().add(room1);
         tableBox.getChildren().add(room2);
 
@@ -42,7 +51,6 @@ public class MainWindow extends Application {
         menuBox.getStyleClass().add("menu");
         formBox.getStyleClass().add("form");
         errorBox.getStyleClass().add("errorBox");
-        this.fillPurchaseForm();
 
         //formBox.setVisible(false);
 
@@ -51,13 +59,15 @@ public class MainWindow extends Application {
         layout.getChildren().add(formBox);
         layout.getChildren().add(errorBox);
 
-        Scene scene = new Scene(layout);
+        scene = new Scene(layout);
         scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.show();
     }
 
     public void fillPurchaseForm(){
+        formBox = new HBox();
+
         Label room = new Label("Room");
         Label startTime = new Label("Start Time");
         Label endTime = new Label("End Time");
@@ -86,5 +96,21 @@ public class MainWindow extends Application {
 
         formBox.getChildren().addAll(formLabels1, formDisplays1, formLabels2, formDisplays2);
     }
+    public void constructMenu(){
+
+        MenuBar menuBar = new MenuBar();
+        menuBox = new VBox();
+
+        Menu help = new Menu("Help");
+        Menu logout = new Menu("Logout");
+        MenuItem about = new MenuItem("about");
+
+        help.getItems().add(about);
+
+        menuBar.getMenus().addAll(help, logout);
+
+        menuBox.getChildren().add(menuBar);
+    }
+
 
 }

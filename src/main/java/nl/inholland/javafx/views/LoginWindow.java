@@ -10,19 +10,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import nl.inholland.javafx.controllers.LoginController;
 import nl.inholland.javafx.dal.Database;
-import nl.inholland.javafx.models.Role;
-import nl.inholland.javafx.models.User;
-
-import java.io.IOException;
 
 
 public class LoginWindow extends Application {
-    MainWindow main = new MainWindow();
     private Database database;
 
-    public LoginWindow(Database db) {
-        database = db;
+    public LoginWindow(Database database) {
+        this.database = database;
     }
 
     @Override
@@ -51,28 +47,11 @@ public class LoginWindow extends Application {
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
+                String username = usernameText.getText().toLowerCase();
+                String password = passwordText.getText();
 
-                    // TODO: Move to controller
-                    for (User user: database.getUsers()) {
-                        boolean isCorrectUser = usernameText.getText().toLowerCase().equals(user.getUsername());
-                        boolean isCorrectPassword = passwordText.getText().equals(user.getPassword());
-
-                        if (isCorrectUser &&  isCorrectPassword) {
-                            // Correct
-                        }
-                        else {
-                            // wrong
-                        }
-                    }
-                    stage.close();
-                    main.start(stage);
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                LoginController loginController = new LoginController(stage, database);
+                loginController.authenticate(username, password);
             }
         });
 

@@ -4,17 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 import nl.inholland.javafx.models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
     @Getter @Setter
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
     @Getter @Setter
-    private List<Movie> movies;
+    private List<Movie> movies = new ArrayList<>();
     @Getter @Setter
-    private List<Room> rooms;
+    private List<Room> rooms = new ArrayList<>();
     @Getter @Setter
-    private List<Screening> screenings;
-    @Getter @Setter
-    private List<Ticket> tickets;
+    private List<Ticket> tickets = new ArrayList<>();
 }

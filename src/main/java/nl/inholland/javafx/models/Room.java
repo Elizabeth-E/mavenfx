@@ -11,9 +11,9 @@ public class Room {
     private String name;
     @NonNull
     private int seats;
-    private ArrayList<Screening> screenings = new ArrayList<>();
+    private ArrayList<Movie> movies = new ArrayList<>();
 
-    public void addScreening(Screening screening) {
-        screenings.add(screening);
+    public void addMovie(Movie screening) {
+        movies.add(screening);
     }
 }
